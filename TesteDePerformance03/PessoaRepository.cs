@@ -22,7 +22,7 @@ namespace TesteDePerformance03
             return pessoa;
         }
 
-        public List<PessoaModel> procurarPorNome(string nome)
+        public List<PessoaModel> ProcurarPorNome(string nome)
         {
             var resultado = listaPessoas.Where(x => x.nome.Contains(nome.ToLower())).ToList();
 

@@ -23,9 +23,9 @@ namespace TesteDePerformance03.Controllers
             return View(_pessoaRepository.GetAll());
         }
 
-        public ActionResult procuraPorNome(string nome)
+        public ActionResult ProcuraPorNome(string nome)
         {
-            return View("Index", _pessoaRepository.procurarPorNome(nome));
+            return View("Details", _pessoaRepository.ProcurarPorNome(nome));
         }
 
         // GET: Pessoa/Details/5
