@@ -1,0 +1,68 @@
+﻿@model IEnumerable<TesteDePerformance03.Models.PessoaModel>
+
+
+
+@{
+    ViewData["Title"] = "Index";
+}
+
+<h1>Index</h1>
+
+<form asp-action="Details">
+    <h2>Procure pelo Id</h2>
+    <div class="form-group">
+        <label class="control-label"></label>
+        <input name="id" class="form-control" />
+    </div>
+
+    <div class="form-group">
+        <input type="submit" value="Procure pelo Id" class="btn btn-primary" />
+    </div>
+</form>
+
+<form asp-action="procuraPorNome">
+    <h2>Procura por Nome</h2>
+    <div class="form-group">
+        <label class="control-label"></label>
+        <input name="nome" class="form-control" />
+    </div>
+
+    <div class="form-group">
+        <input type="submit" value="procuraPorNome" class="btn btn-primary" />
+    </div>
+</form>
+
+<p>
+    <a asp-action="Create">Create New</a>
+</p>
+<table class="table">
+    <thead>
+        <tr>
+            <th>
+                @Html.DisplayNameFor(model => model.id)
+            </th>
+            <th>
+                @Html.DisplayNameFor(model => model.nome)
+            </th>
+            <th></th>
+        </tr>
+    </thead>
+    <tbody>
+        @foreach (var item in Model)
+        {
+            <tr>
+                <td>
+                    @Html.DisplayFor(modelItem => item.id)
+                </td>
+                <td>
+                    @Html.DisplayFor(modelItem => item.nome)
+                </td>
+                <td>
+                    @Html.ActionLink("Edit", "Edit", item) |
+                    @Html.ActionLink("Details", "Details", new { Id = item.id }) |
+                    @Html.ActionLink("Delete", "Delete", new { Id = item.id })
+                </td>
+            </tr>
+        }
+    </tbody>
+</table>

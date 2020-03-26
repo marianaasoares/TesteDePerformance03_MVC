@@ -8,7 +8,7 @@ namespace TesteDePerformance03
 {
     public class PessoaRepository
     {
-        public static List<PessoaModel> listaPessoas = new List<PessoaModel>();
+        public static List<PessoaModel> listaPessoas { get; set; } = new List<PessoaModel>();
 
         public List<PessoaModel> GetAll()
         {
