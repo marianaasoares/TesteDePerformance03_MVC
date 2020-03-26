@@ -4,21 +4,36 @@ using System.Linq;
 using System.Threading.Tasks;
 using Microsoft.AspNetCore.Http;
 using Microsoft.AspNetCore.Mvc;
+using TesteDePerformance03.Models;
 
 namespace TesteDePerformance03.Controllers
 {
     public class PessoaController : Controller
     {
+        private readonly PessoaRepository _pessoaRepository;
+
+        public PessoaController()
+        {
+            _pessoaRepository = new PessoaRepository();
+        }
+
         // GET: Pessoa
         public ActionResult Index()
         {
-            return View();
+            return View(_pessoaRepository.GetAll());
+        }
+
+        public ActionResult procuraPorNome(string nome)
+        {
+            return View("Index", _pessoaRepository.procurarPorNome(nome));
         }
 
         // GET: Pessoa/Details/5
         public ActionResult Details(int id)
         {
-            return View();
+            var pessoa = _pessoaRepository.GetById(id);
+
+            return View(pessoa);
         }
 
         // GET: Pessoa/Create
@@ -30,11 +45,11 @@ namespace TesteDePerformance03.Controllers
         // POST: Pessoa/Create
         [HttpPost]
         [ValidateAntiForgeryToken]
-        public ActionResult Create(IFormCollection collection)
+        public ActionResult Create(PessoaModel pessoaModel)
         {
             try
             {
-                // TODO: Add insert logic here
+                _pessoaRepository.adicionar(pessoaModel);
 
                 return RedirectToAction(nameof(Index));
             }
@@ -47,17 +62,18 @@ namespace TesteDePerformance03.Controllers
         // GET: Pessoa/Edit/5
         public ActionResult Edit(int id)
         {
-            return View();
+            var pessoa = _pessoaRepository.GetById(id);
+            return View(pessoa);
         }
 
         // POST: Pessoa/Edit/5
         [HttpPost]
         [ValidateAntiForgeryToken]
-        public ActionResult Edit(int id, IFormCollection collection)
+        public ActionResult Edit(PessoaModel pessoaModel)
         {
             try
             {
-                // TODO: Add update logic here
+                _pessoaRepository.atualizar(pessoaModel);
 
                 return RedirectToAction(nameof(Index));
             }
@@ -70,17 +86,18 @@ namespace TesteDePerformance03.Controllers
         // GET: Pessoa/Delete/5
         public ActionResult Delete(int id)
         {
-            return View();
+            var pessoa = _pessoaRepository.GetById(id);
+            return View(pessoa);
         }
 
         // POST: Pessoa/Delete/5
         [HttpPost]
         [ValidateAntiForgeryToken]
-        public ActionResult Delete(int id, IFormCollection collection)
+        public ActionResult Delete(PessoaModel pessoaModel)
         {
             try
             {
-                // TODO: Add delete logic here
+                _pessoaRepository.deletar(pessoaModel.id);
 
                 return RedirectToAction(nameof(Index));
             }
