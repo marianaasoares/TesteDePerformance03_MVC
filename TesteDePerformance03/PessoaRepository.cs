@@ -8,36 +8,31 @@ namespace TesteDePerformance03
 {
     public class PessoaRepository
     {
-        public static List<PessoaModel> listaPessoas { get; set; } = new List<PessoaModel>();
+        public static List<PessoaModel> ListaPessoas { get; set; } = new List<PessoaModel>();
                 
 
         public List<PessoaModel> GetAll()
         {
-            return listaPessoas;
+            return ListaPessoas;
         }
 
         public PessoaModel GetById(int id)
         {
-            var pessoa = listaPessoas.FirstOrDefault(x => x.Id == id);
+            var pessoa = ListaPessoas.FirstOrDefault(x => x.Id == id);
 
             return pessoa;
         }
 
-        public List<PessoaModel> ProcurarPorNome(string nome = null)
+        public List<PessoaModel> ProcurarPorNome(string nome)
         {
-            listaPessoas = GetAll();
-            if (!string.IsNullOrWhiteSpace(nome))
-            {
-                listaPessoas = listaPessoas.Where(x => x.Nome.Contains(nome, StringComparison.OrdinalIgnoreCase));
+            var resultado = ListaPessoas.Where(x => x.Nome.Contains(nome, StringComparison.OrdinalIgnoreCase));
 
-            }
-
-            return listaPessoas.ToList();
+            return resultado.ToList();
         }
 
         public void Adicionar(PessoaModel pessoaModelNova)
         {
-            listaPessoas.Add(pessoaModelNova);
+            ListaPessoas.Add(pessoaModelNova);
         }
 
         public void Atualizar(PessoaModel pessoaModelAtualizada)
@@ -51,7 +46,7 @@ namespace TesteDePerformance03
         {
             var removePessoa = GetById(id);
 
-            listaPessoas.Remove(removePessoa);
+            ListaPessoas.Remove(removePessoa);
         }
 
         

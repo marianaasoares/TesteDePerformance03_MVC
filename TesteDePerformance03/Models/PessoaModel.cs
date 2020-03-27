@@ -7,9 +7,9 @@ namespace TesteDePerformance03.Models
 {
     public class PessoaModel
     {
-        public int id { get; set; }
-        public string nome { get; set; }
-        public string dataNascimento { get; set; }
+        public int Id { get; set; }
+        public string Nome { get; set; }
+        public string DataNascimento { get; set; }
 
     }
 }
