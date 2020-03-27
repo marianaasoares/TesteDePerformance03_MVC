@@ -23,11 +23,16 @@ namespace TesteDePerformance03
             return pessoa;
         }
 
-        public List<PessoaModel> ProcurarPorNome(string nome)
+        public List<PessoaModel> ProcurarPorNome(string nome = null)
         {
-            var resultado = listaPessoas.Where(x => x.Nome.Contains(nome, StringComparison.OrdinalIgnoreCase));
+            listaPessoas = GetAll();
+            if (!string.IsNullOrWhiteSpace(nome))
+            {
+                listaPessoas = listaPessoas.Where(x => x.Nome.Contains(nome, StringComparison.OrdinalIgnoreCase));
 
-            return resultado.ToList();
+            }
+
+            return listaPessoas.ToList();
         }
 
         public void Adicionar(PessoaModel pessoaModelNova)

@@ -18,27 +18,17 @@ namespace TesteDePerformance03.Controllers
         }
 
         // GET: Pessoa
-        public ActionResult Index(string nome = null)
+        public ActionResult Index()
         {
-            var pessoas = _pessoaRepository.GetAll();
-
-            if (!string.IsNullOrWhiteSpace(nome))
-            {
-                pessoas = pessoas.Where(x => x.Nome.Contains(nome, StringComparison.OrdinalIgnoreCase)).ToList();
-            }
-            return View(pessoas);
+            return View(_pessoaRepository.GetAll());
         }
 
-        //public ActionResult ProcuraPorNome(string nome)
-        //{
-         //   if (!string.IsNullOrWhiteSpace(nome))
-        //    {
-       //        var resultado = _pessoaRepository.ProcurarPorNome(nome);
-       //     }
+        public ActionResult ProcuraPorNome(string nome)
+        {
+           
+            return View("Index", _pessoaRepository.ProcurarPorNome(nome));
+        }
 
-      //      return View("Index", resultado);
-    //    }
-    
         // GET: Pessoa/Details/5
         public ActionResult Details(int id)
         {
