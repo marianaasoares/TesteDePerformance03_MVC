@@ -9,6 +9,7 @@ Project("{2150E333-8FDC-42A3-9474-1A3956D46DE8}") = "Pessoa.Apresetation", "Pess
 EndProject
 Project("{2150E333-8FDC-42A3-9474-1A3956D46DE8}") = "Repositories", "Repositories", "{59731FB3-81B1-4ED1-91A5-8A3EE2C18972}"
 	ProjectSection(SolutionItems) = preProject
+		TesteDePerformance03\IPessoaRepository.cs = TesteDePerformance03\IPessoaRepository.cs
 		TesteDePerformance03\PessoaRepository.cs = TesteDePerformance03\PessoaRepository.cs
 	EndProjectSection
 EndProject

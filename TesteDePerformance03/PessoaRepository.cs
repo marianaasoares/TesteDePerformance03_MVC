@@ -6,7 +6,7 @@ using TesteDePerformance03.Models;
 
 namespace TesteDePerformance03
 {
-    public class PessoaRepository
+    public class PessoaRepository : IPessoaRepository
     {
         public static List<PessoaModel> listaPessoas { get; set; } = new List<PessoaModel>();
 
