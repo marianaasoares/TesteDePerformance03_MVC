@@ -18,16 +18,27 @@ namespace TesteDePerformance03.Controllers
         }
 
         // GET: Pessoa
-        public ActionResult Index()
+        public ActionResult Index(string nome = null)
         {
-            return View(_pessoaRepository.GetAll());
+            var pessoas = _pessoaRepository.GetAll();
+
+            if (!string.IsNullOrWhiteSpace(nome))
+            {
+                pessoas = pessoas.Where(x => x.Nome.Contains(nome, StringComparison.OrdinalIgnoreCase)).ToList();
+            }
+            return View(pessoas);
         }
 
-        public ActionResult ProcuraPorNome(string nome)
-        {
-            return View("Details", _pessoaRepository.ProcurarPorNome(nome));
-        }
+        //public ActionResult ProcuraPorNome(string nome)
+        //{
+         //   if (!string.IsNullOrWhiteSpace(nome))
+        //    {
+       //        var resultado = _pessoaRepository.ProcurarPorNome(nome);
+       //     }
 
+      //      return View("Index", resultado);
+    //    }
+    
         // GET: Pessoa/Details/5
         public ActionResult Details(int id)
         {
@@ -49,7 +60,7 @@ namespace TesteDePerformance03.Controllers
         {
             try
             {
-                _pessoaRepository.adicionar(pessoaModel);
+                _pessoaRepository.Adicionar(pessoaModel);
 
                 return RedirectToAction(nameof(Index));
             }
@@ -73,7 +84,7 @@ namespace TesteDePerformance03.Controllers
         {
             try
             {
-                _pessoaRepository.atualizar(pessoaModel);
+                _pessoaRepository.Atualizar(pessoaModel);
 
                 return RedirectToAction(nameof(Index));
             }
@@ -97,7 +108,7 @@ namespace TesteDePerformance03.Controllers
         {
             try
             {
-                _pessoaRepository.deletar(pessoaModel.id);
+                _pessoaRepository.Deletar(pessoaModel.Id);
 
                 return RedirectToAction(nameof(Index));
             }

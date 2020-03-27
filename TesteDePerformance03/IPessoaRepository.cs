@@ -6,9 +6,10 @@ using TesteDePerformance03.Models;
 
 namespace TesteDePerformance03
 {
-    public class IPessoaRepository
+    public interface IPessoaRepository
     {
         IEnumerable<PessoaModel> GetAll();
-        void adicionar(PessoaModel novaPessoaModel);
+        void Adicionar(PessoaModel novaPessoaModel);
+
     }
 }

@@ -6,9 +6,10 @@ using TesteDePerformance03.Models;
 
 namespace TesteDePerformance03
 {
-    public class PessoaRepository : IPessoaRepository
+    public class PessoaRepository
     {
         public static List<PessoaModel> listaPessoas { get; set; } = new List<PessoaModel>();
+                
 
         public List<PessoaModel> GetAll()
         {
@@ -17,35 +18,37 @@ namespace TesteDePerformance03
 
         public PessoaModel GetById(int id)
         {
-            var pessoa = listaPessoas.FirstOrDefault(x => x.id == id);
+            var pessoa = listaPessoas.FirstOrDefault(x => x.Id == id);
 
             return pessoa;
         }
 
         public List<PessoaModel> ProcurarPorNome(string nome)
         {
-            var resultado = listaPessoas.Where(x => x.nome.Contains(nome.ToLower())).ToList();
+            var resultado = listaPessoas.Where(x => x.Nome.Contains(nome, StringComparison.OrdinalIgnoreCase));
 
-            return resultado;
+            return resultado.ToList();
         }
 
-        public void adicionar(PessoaModel pessoaModelNova)
+        public void Adicionar(PessoaModel pessoaModelNova)
         {
             listaPessoas.Add(pessoaModelNova);
         }
 
-        public void atualizar(PessoaModel pessoaModelAtualizada)
+        public void Atualizar(PessoaModel pessoaModelAtualizada)
         {
-            var pessoaModel = GetById(pessoaModelAtualizada.id);
+            var pessoaModel = GetById(pessoaModelAtualizada.Id);
 
-            pessoaModel.nome = pessoaModelAtualizada.nome;
+            pessoaModel.Nome = pessoaModelAtualizada.Nome;
         }
 
-        public void deletar(int id)
+        public void Deletar(int id)
         {
             var removePessoa = GetById(id);
 
             listaPessoas.Remove(removePessoa);
         }
+
+        
     }
 }
